@@ -83,6 +83,24 @@ class LShapeRebarTool:
         # Call to CommandUShaepRebar() function
         LShapeRebar.CommandLShapeRebar()
 
+class JShapeRebarTool:
+
+    def GetResources(self):
+        return {'Pixmap'  : os.path.split(os.path.abspath(__file__))[0]+'/icons/dropdown_list/UShapeRebar.svg',
+                'MenuText': QT_TRANSLATE_NOOP("RebarAddon", "J-Shape Rebar"),
+                'ToolTip' : QT_TRANSLATE_NOOP("RebarAddon", "Creates a J-Shape bar reinforcement from the selected face of the Structural element.")}
+
+    def IsActive(self):
+        if FreeCADGui.ActiveDocument:
+            return True
+        else:
+            return False
+
+    def Activated(self):
+        import JShapeRebar
+        # Call to CommandUShaepRebar() function
+        JShapeRebar.CommandJShapeRebar()
+
 class StirrupTool:
 
     def GetResources(self):
@@ -138,6 +156,7 @@ class HelicalRebarTool:
         HelicalRebar.CommandHelicalRebar()
 
 FreeCADGui.addCommand('Arch_Rebar_Straight', StraightRebarTool())
+FreeCADGui.addCommand('Arch_Rebar_JShape', JShapeRebarTool())
 FreeCADGui.addCommand('Arch_Rebar_UShape', UShapeRebarTool())
 FreeCADGui.addCommand('Arch_Rebar_LShape', LShapeRebarTool())
 FreeCADGui.addCommand('Arch_Rebar_Stirrup', StirrupTool())
@@ -145,4 +164,4 @@ FreeCADGui.addCommand('Arch_Rebar_BentShape', BentShapeRebarTool())
 FreeCADGui.addCommand('Arch_Rebar_Helical', HelicalRebarTool())
 
 # List of all rebar commands
-RebarCommands = ["Arch_Rebar_Straight", "Arch_Rebar_UShape", "Arch_Rebar_LShape", "Arch_Rebar_Stirrup", "Arch_Rebar_BentShape", "Arch_Rebar_Helical"]
+RebarCommands = ["Arch_Rebar_Straight", "Arch_Rebar_JShape", "Arch_Rebar_UShape", "Arch_Rebar_LShape", "Arch_Rebar_Stirrup", "Arch_Rebar_BentShape", "Arch_Rebar_Helical"]
